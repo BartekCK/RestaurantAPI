@@ -1,9 +1,14 @@
 package com.restaurant.models;
 
+import lombok.Builder;
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Set;
 
+@Data
 @Entity
+@Builder
 @javax.persistence.Table(name = "restaurants_table")
 public class Table {
 

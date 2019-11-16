@@ -13,7 +13,7 @@ public class Opinion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long opinionId;
 
     @OneToOne
     private User customer;
