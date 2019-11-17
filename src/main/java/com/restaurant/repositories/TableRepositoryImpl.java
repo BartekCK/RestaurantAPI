@@ -54,7 +54,7 @@ public class TableRepositoryImpl implements TableRepository {
     }
 
     @Override
-    public List<TableView> getAllTablesByRestaurantId(Integer restaurantId){
+    public List<TableView> getAllTablesByRestaurantId(Integer restaurantId) {
         return tableJPARepository
                 .findAll()
                 .stream()
@@ -77,7 +77,7 @@ public class TableRepositoryImpl implements TableRepository {
     private Table getUpdatedTable(TableCommand tableCommand, Table table) {
         table.setSeatsNumber(tableCommand.getSeatsNumber());
         Optional<Restaurant> restaurant = restaurantJPARepository.findById(tableCommand.getRestaurantId());
-        if(!restaurant.isPresent())
+        if (!restaurant.isPresent())
             throw new RestaurantNotFoundException(tableCommand.getRestaurantId());
         table.setRestaurant(restaurant.get());
         return table;

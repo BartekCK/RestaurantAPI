@@ -20,7 +20,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long personId;
+    private Long userId;
 
     @Column(nullable = false)
     private String username;
@@ -53,7 +53,7 @@ public class User {
         this.reservations = reservations;
     }
 
-    public Long getPersonId() {
-        return personId;
+    public Long getUserId() {
+        return userId;
     }
 }

@@ -21,7 +21,7 @@ public class TableCommand {
 
     @JsonCreator
     public TableCommand(@JsonProperty(value = "seatsNumber", required = true) int seatsNumber,
-                             @JsonProperty(value = "restaurantId", required = true) Integer restaurantId) {
+                        @JsonProperty(value = "restaurantId", required = true) Integer restaurantId) {
         this.seatsNumber = seatsNumber;
         this.restaurantId = restaurantId;
     }

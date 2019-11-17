@@ -40,9 +40,4 @@ public class TableController {
     public List<TableView> getTables() {
         return tableService.getAllTables();
     }
-
-    @GetMapping
-    public List<TableView> getTablesByRestaurantId(Integer restaurantId) {
-        return tableService.getAllTablesByRestaurantId(restaurantId);
-    }
 }

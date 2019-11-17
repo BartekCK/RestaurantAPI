@@ -40,7 +40,7 @@ public class UserPrincipal implements UserDetails {
                         .collect(Collectors.toList());
 
         return new UserPrincipal(
-                user.getPersonId(),
+                user.getUserId(),
                 user.getUsername(),
                 user.getEmail(),
                 user.getPhone(),

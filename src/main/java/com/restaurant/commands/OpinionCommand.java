@@ -11,13 +11,13 @@ public class OpinionCommand {
     @NotEmpty
     private Long customerId;
     @NotEmpty
-    private Long restaurantId;
+    private Integer restaurantId;
     @NotEmpty
     private String textOpinion;
 
     @JsonCreator
     public OpinionCommand(@JsonProperty(value = "customerId", required = true) Long customerId,
-                          @JsonProperty(value = "restaurantId", required = true) Long restaurantId,
+                          @JsonProperty(value = "restaurantId", required = true) Integer restaurantId,
                           @JsonProperty(value = "textOpinion", required = true) String textOpinion) {
         this.customerId = customerId;
         this.restaurantId = restaurantId;
