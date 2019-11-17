@@ -1,30 +1,39 @@
 package com.restaurant.models;
 
-import com.restaurant.models.enums.JobPosition;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.HashSet;
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 @Entity
-@Table(name = "employee")
-public class Employee
-{
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long employeeId;
 
-    @Enumerated(EnumType.STRING)
-    private JobPosition jobPosition;
+    @OneToOne
+    private User userId;
+
+    @NotBlank
+    private String name;
+
+    @NotBlank
+    private String surname;
 
     @Column(nullable = false)
     private double salary;
 
     @OneToMany(mappedBy = "orderId")
-    Set<Order> orderSet = new HashSet<>();
+    private Set<Order> orderSet;
 
-    @OneToOne
-    User userId;
 
 }

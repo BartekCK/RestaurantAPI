@@ -1,11 +1,14 @@
 package com.restaurant.models;
 
+import lombok.Data;
+
+import javax.persistence.Table;
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "orders")
+@Data
 public class Order {
 
     @Id
@@ -23,7 +26,7 @@ public class Order {
 
     @ManyToMany
     @JoinTable(name = "order_menu")
-    private List<Menu> orderDishes = new ArrayList<>();
+    private List<Dish> orderDishes;
 
     @Override
     public int hashCode() {
@@ -31,8 +34,8 @@ public class Order {
     }
 
     @Override
-    public boolean equals(Object o){
-        if (o instanceof Order){
+    public boolean equals(Object o) {
+        if (o instanceof Order) {
             Order order = (Order) o;
             return orderId == order.orderId && bill == order.bill;
         }

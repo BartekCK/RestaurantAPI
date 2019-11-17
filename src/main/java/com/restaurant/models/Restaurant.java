@@ -1,16 +1,23 @@
 package com.restaurant.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
+@Data
+@Builder
 @Entity
-@Table(name = "restaurant")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Restaurant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long restaurantId;
+    private Integer restaurantId;
 
     @Column(nullable = false)
     private String city;
@@ -18,6 +25,6 @@ public class Restaurant {
     @Column(nullable = false)
     private String street;
 
-    @OneToMany(mappedBy = "restaurantId")
-    Set<TableType> tables = new HashSet<>();
+    @OneToMany(mappedBy = "restaurant")
+    private Set<Table> tables;
 }
