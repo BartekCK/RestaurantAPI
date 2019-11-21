@@ -38,7 +38,8 @@ public class User {
     @ManyToMany
     private Set<Role> roles;
 
-    @OneToMany(mappedBy = "reservationId")
+    @OneToMany
+    @JoinColumn(name = "user_id")
     private Set<Reservation> reservations;
 
     @OneToOne(mappedBy = "userId", cascade = CascadeType.REMOVE)

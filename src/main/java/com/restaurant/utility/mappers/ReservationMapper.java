@@ -8,8 +8,8 @@ public class ReservationMapper {
         return ReservationView.builder()
                 .reservationId(reservation.getReservationId())
                 .dateReservation(reservation.getDateReservation())
-                .username(reservation.getCustomer().getUsername())
                 .tableId(reservation.getTable().getTableId())
+                .comments(reservation.getComments())
                 //without order
                 .build();
     }

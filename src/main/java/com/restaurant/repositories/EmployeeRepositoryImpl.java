@@ -31,7 +31,6 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
 
     @Override
-    @Transactional
     public ResponseEntity<EmployeeView> saveEmployee(String username, EmployeeDTO employeeDTO) {
         User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found" + username));
 

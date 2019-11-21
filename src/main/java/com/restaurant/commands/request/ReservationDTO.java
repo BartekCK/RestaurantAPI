@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class ReservationDTO {
 
     private LocalDateTime dateReservation;
-    private String username;
+    private String comments;
     private Integer tableId;
     private Long orderId;
 }

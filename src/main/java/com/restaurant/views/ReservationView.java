@@ -11,7 +11,7 @@ public class ReservationView {
 
     private Long reservationId;
     private LocalDateTime dateReservation;
-    private String username;
+    private String comments;
     private Integer tableId;
     private Long orderId;
 

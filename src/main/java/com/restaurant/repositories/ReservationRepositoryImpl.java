@@ -26,7 +26,7 @@ public class ReservationRepositoryImpl implements ReservationRepository {
     @Override
     public ResponseEntity<ReservationView> createReservationForUser(ReservationDTO reservationDTO, Long userId) {
 
-        User user = userJPARepository.findById(userId).orElseThrow(() -> new UsernameNotFoundException("User not found" + reservationDTO.getUsername()));
+        User user = userJPARepository.findById(userId).orElseThrow(() -> new UsernameNotFoundException("User not found"));
         Table table = tableTypeJPARepository.findById(reservationDTO.getTableId()).orElseThrow(() -> new RuntimeException("Table not found"));
 
 
@@ -37,11 +37,14 @@ public class ReservationRepositoryImpl implements ReservationRepository {
 
         Reservation reservation = Reservation.builder()
                 .dateReservation(reservationDTO.getDateReservation())
-                .customer(user)
+                .comments(reservationDTO.getComments())
                 .table(table)
                 .build();
 
         reservationJPARepository.save(reservation);
+        user.getReservations().add(reservation);
+        userJPARepository.save(user);
+
         return ResponseEntity.ok(ReservationMapper.mapReservationToReservationView(reservation));
     }
 
