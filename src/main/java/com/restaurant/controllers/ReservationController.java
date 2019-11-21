@@ -10,20 +10,33 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("user")
+@RequestMapping("/reservation")
 public class ReservationController {
 
     private final ReservationService reservationService;
 
-    @PostMapping("/reservation/{userId}")
+    @PostMapping("/{userId}")
     @PreAuthorize("hasAnyRole('ADMIN','COOK','WAITER') or #userId == principal.id")
-    public ResponseEntity<ReservationView> makeReservation(@RequestBody ReservationDTO reservationDTO, @PathVariable Long userId ){
-        return reservationService.makeReservation(reservationDTO,userId);
+    public ResponseEntity<ReservationView> makeReservation(@RequestBody ReservationDTO reservationDTO, @PathVariable Long userId) {
+        return reservationService.makeReservation(reservationDTO, userId);
     }
 
-    @GetMapping("/reservation/{userId}/{reservationId}")
-    @PreAuthorize("hasAnyRole('ADMIN','COOK','WAITER') or #userId == principal.id ")
-    public ResponseEntity<ReservationView> getReservationById(@PathVariable Long userId, @PathVariable Long reservationId){
+    @GetMapping("/{reservationId}")
+    @PreAuthorize("hasAnyRole('ADMIN','COOK','WAITER')")
+    public ResponseEntity<ReservationView> getReservationById(@PathVariable Long reservationId) {
         return reservationService.getReservationById(reservationId);
     }
+
+    @GetMapping("/user/{userId}")
+    @PreAuthorize("hasAnyRole('ADMIN','COOK','WAITER') or #userId == principal.id ")
+    public Iterable<ReservationView> getAllUserReservations(@PathVariable Long userId) {
+        return reservationService.getAllUserReservations(userId);
+    }
+
+    @DeleteMapping("/{reservationId}")
+    @PreAuthorize("hasAnyRole('ADMIN','WAITER')")
+    public ResponseEntity deleteReservationById(@PathVariable Long reservationId) {
+        return reservationService.deleteReservation(reservationId);
+    }
+
 }

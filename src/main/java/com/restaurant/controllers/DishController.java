@@ -17,7 +17,7 @@ public class DishController {
     private final DishService dishService;
 
     @PostMapping("/dish")
-   // @PreAuthorize("hasRole('ADMIN')")
+    // @PreAuthorize("hasRole('ADMIN')")
     public Long addDishToMenu(@RequestBody @Valid DishCommand dishCommand) {
         return dishService.addDishToMenu(dishCommand);
     }

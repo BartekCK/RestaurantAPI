@@ -15,11 +15,21 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public ResponseEntity<ReservationView> makeReservation(ReservationDTO reservationDTO, Long userId) {
-        return reservationRepository.createReservationForUser(reservationDTO,userId);
+        return reservationRepository.createReservationForUser(reservationDTO, userId);
     }
 
     @Override
     public ResponseEntity<ReservationView> getReservationById(Long reservationId) {
         return reservationRepository.getReservationById(reservationId);
+    }
+
+    @Override
+    public Iterable<ReservationView> getAllUserReservations(Long userId) {
+        return reservationRepository.getAllUserReservations(userId);
+    }
+
+    @Override
+    public ResponseEntity deleteReservation(Long reservationId) {
+        return reservationRepository.deleteReservation(reservationId);
     }
 }

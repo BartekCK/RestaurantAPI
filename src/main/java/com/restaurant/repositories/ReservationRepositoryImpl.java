@@ -15,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
+import java.util.stream.Collectors;
+
 @Repository
 @AllArgsConstructor
 public class ReservationRepositoryImpl implements ReservationRepository {
@@ -50,21 +52,21 @@ public class ReservationRepositoryImpl implements ReservationRepository {
 
     @Override
     public ResponseEntity<ReservationView> getReservationById(Long reservationId) {
-        return ResponseEntity.ok(reservationJPARepository.findById(reservationId).map(ReservationMapper::mapReservationToReservationView).orElseThrow(()->new RuntimeException("Reservation not found")));
+        return ResponseEntity.ok(reservationJPARepository.findById(reservationId).map(ReservationMapper::mapReservationToReservationView).orElseThrow(() -> new RuntimeException("Reservation not found")));
     }
 
     @Override
     public Iterable<ReservationView> getAllUserReservations(Long userId) {
-        return null;
+        User user = userJPARepository.findById(userId).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return user.getReservations().stream().map(ReservationMapper::mapReservationToReservationView).collect(Collectors.toList());
     }
 
     @Override
-    public ResponseEntity<ReservationView> updateReservation(Long reservationId, ReservationDTO reservationDTO) {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<ReservationView> deleteReservation(Long reservationId) {
-        return null;
+    public ResponseEntity deleteReservation(Long reservationId) {
+        if (reservationJPARepository.existsById(reservationId)) {
+            reservationJPARepository.deleteById(reservationId);
+            return new ResponseEntity(HttpStatus.ACCEPTED);
+        }
+        return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 }

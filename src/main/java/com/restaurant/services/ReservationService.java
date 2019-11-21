@@ -8,6 +8,10 @@ public interface ReservationService {
 
     ResponseEntity<ReservationView> makeReservation(ReservationDTO reservationDTO, Long userId);
 
-    ResponseEntity <ReservationView> getReservationById(Long reservationId);
+    ResponseEntity<ReservationView> getReservationById(Long reservationId);
+
+    Iterable<ReservationView> getAllUserReservations(Long userId);
+
+    ResponseEntity deleteReservation(Long reservationId);
 
 }

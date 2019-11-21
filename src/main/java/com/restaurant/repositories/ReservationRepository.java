@@ -11,8 +11,6 @@ public interface ReservationRepository {
 
     Iterable<ReservationView> getAllUserReservations(Long userId);
 
-    ResponseEntity<ReservationView> updateReservation(Long reservationId, ReservationDTO reservationDTO);
-
-    ResponseEntity<ReservationView> deleteReservation(Long reservationId);
+    ResponseEntity deleteReservation(Long reservationId);
 
 }
