@@ -1,15 +1,18 @@
 package com.restaurant.models;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Data
 @javax.persistence.Table(name = "restaurants_table")
 public class Table {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long tableId;
+    private Integer tableId;
 
     @Column(nullable = false)
     private int seatsNumber;

@@ -1,10 +1,19 @@
 package com.restaurant.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Data
 @javax.persistence.Table(name = "reservation")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Reservation implements Comparable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +30,10 @@ public class Reservation implements Comparable {
 
     @OneToOne
     private Order order;
+
+    public Reservation(LocalDateTime localDateTime) {
+        this.dateReservation = localDateTime;
+    }
 
     @Override
     public boolean equals(Object o) {
