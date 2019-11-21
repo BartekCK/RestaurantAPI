@@ -7,7 +7,7 @@ public class EmployeeMapper {
 
     public static EmployeeView mapEmployeeToEmployeeView(Employee employee) {
         return EmployeeView.builder()
-                .userId(employee.getUserId().getPersonId())
+                .userId(employee.getUserId().getUserId())
                 .employeeId(employee.getEmployeeId())
                 .name(employee.getName())
                 .surname(employee.getSurname())

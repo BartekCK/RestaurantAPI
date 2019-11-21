@@ -5,7 +5,7 @@ import com.restaurant.models.Reservation;
 import com.restaurant.models.Table;
 import com.restaurant.models.User;
 import com.restaurant.repositories.jpa.ReservationJPARepository;
-import com.restaurant.repositories.jpa.TableTypeJPARepository;
+import com.restaurant.repositories.jpa.TableJPARepository;
 import com.restaurant.repositories.jpa.UserJPARepository;
 import com.restaurant.utility.mappers.ReservationMapper;
 import com.restaurant.views.ReservationView;
@@ -23,7 +23,7 @@ public class ReservationRepositoryImpl implements ReservationRepository {
 
     private final ReservationJPARepository reservationJPARepository;
     private final UserJPARepository userJPARepository;
-    private final TableTypeJPARepository tableTypeJPARepository;
+    private final TableJPARepository tableTypeJPARepository;
 
     @Override
     public ResponseEntity<ReservationView> createReservationForUser(ReservationDTO reservationDTO, Long userId) {

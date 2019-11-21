@@ -13,7 +13,7 @@ public class Table {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer tableId;
+    private Long tableId;
 
     @Column(nullable = false)
     private int seatsNumber;
