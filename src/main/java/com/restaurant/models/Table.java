@@ -2,7 +2,6 @@ package com.restaurant.models;
 
 import lombok.Builder;
 import lombok.Data;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -14,7 +13,7 @@ public class Table {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long tableId;
+    private Integer tableId;
 
     @Column(nullable = false)
     private int seatsNumber;

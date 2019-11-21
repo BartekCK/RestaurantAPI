@@ -3,6 +3,7 @@ package com.restaurant.configuration.db;
 import com.restaurant.models.User;
 import com.restaurant.models.authority.Role;
 import com.restaurant.models.authority.RoleName;
+import com.restaurant.repositories.jpa.ReservationJPARepository;
 import com.restaurant.repositories.jpa.RoleJPARepository;
 import com.restaurant.repositories.jpa.UserJPARepository;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,7 @@ public class DbInit implements CommandLineRunner {
     private RoleJPARepository roleJPARepository;
     private PasswordEncoder passwordEncoder;
     private UserJPARepository userJPARepository;
+    private ReservationJPARepository reservationJPARepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -54,6 +56,22 @@ public class DbInit implements CommandLineRunner {
             );
             userJPARepository.save(user);
         }
+
+
+//        //TEST
+//        Reservation reservation1 = new Reservation( LocalDateTime.now().minusHours(1));
+//        reservationJPARepository.save(reservation1);
+//
+//        Reservation reservation2 = new Reservation( LocalDateTime.now().plusHours(1));
+//        reservationJPARepository.save(reservation2);
+
+//        String str = "2019-11-16 15:15";
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+//        LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
+//
+//
+//        System.out.println(reservationJPARepository.existsByDateReservationBetween(dateTime.minusHours(1),dateTime.plusHours(1)));
+
 
     }
 }

@@ -23,11 +23,13 @@ public class RestaurantController {
     private final OpinionService opinionService;
 
     @PostMapping
+    //  @PreAuthorize("hasRole('ADMIN')")
     public Integer addRestaurant(@RequestBody @Valid RestaurantCommand restaurantCommand) {
         return restaurantService.addRestaurant(restaurantCommand);
     }
 
     @PutMapping("/{restaurantId}")
+    //@PreAuthorize("hasRole('ADMIN')")
     public RestaurantView updateRestaurant(@PathVariable Integer restaurantId, @RequestBody RestaurantCommand restaurantCommand) {
         return restaurantService.updateRestaurant(restaurantId, restaurantCommand);
     }

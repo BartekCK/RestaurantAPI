@@ -1,11 +1,7 @@
 package com.restaurant.views;
 
-import com.restaurant.models.Order;
-import com.restaurant.models.User;
 import lombok.Builder;
 import lombok.Data;
-
-import java.util.Set;
 
 @Data
 @Builder
@@ -13,7 +9,7 @@ public class EmployeeView {
 
     private Long employeeId;
 
-    private User userId;
+    private Long userId;
 
     private String name;
 
@@ -21,5 +17,4 @@ public class EmployeeView {
 
     private double salary;
 
-    private Set<Order> orderSet;
 }
