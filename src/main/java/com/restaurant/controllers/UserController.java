@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @GetMapping("/users/{userId}")
-    @PreAuthorize("#userId == principal.id")
+    @PreAuthorize("hasRole('ADMIN') or #userId == principal.id")
     public UserPrincipal getUserById(@PathVariable Long userId) {
         return userService.getUserById(userId);
     }
@@ -41,7 +41,7 @@ public class UserController {
     }
 
     @DeleteMapping("/users/{userId}")
-    @PreAuthorize("hasRole('ADMIN')")//TEST
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity deleteUser(@PathVariable Long userId) {
         return userService.deleteUser(userId);
     }
