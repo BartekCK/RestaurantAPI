@@ -94,8 +94,15 @@ public class OpinionRepositoryImpl implements OpinionRepository {
                 .orElseThrow(() -> new OpinionNotFoundException(opinionId));
     }
 
+    private User findUser(Long userId) {
+        return userJPARepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException(userId));
+    }
+
     private Opinion getUpdatedOpinion(OpinionCommand opinionCommand, Opinion opinion) {
         opinion.setRestaurant(findRestaurant(opinionCommand.getRestaurantId()));
+        opinion.setCustomer(findUser(opinionCommand.getCustomerId()));
+        opinion.setTextOpinion(opinionCommand.getTextOpinion());
         return opinion;
     }
 }

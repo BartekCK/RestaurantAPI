@@ -7,7 +7,8 @@ import lombok.Data;
 @Builder
 public class OpinionView {
     private Long opinionId;
-    private UserPrincipal customer;
+    private Long userId;
+    private String userName;
     private RestaurantView restaurant;
     private String textOpinion;
 }

@@ -2,6 +2,7 @@ package com.restaurant.models;
 
 import lombok.Builder;
 import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Set;
 

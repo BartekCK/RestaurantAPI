@@ -3,6 +3,7 @@ package com.restaurant.models;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -12,6 +13,7 @@ import static com.restaurant.utility.constants.ExceptionMessages.OPINION_SIZE_ME
 @Entity
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class Opinion {
 

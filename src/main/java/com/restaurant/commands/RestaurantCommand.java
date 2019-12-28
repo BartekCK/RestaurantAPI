@@ -2,15 +2,14 @@ package com.restaurant.commands;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.NonNull;
 import lombok.Value;
-
-import javax.validation.constraints.NotEmpty;
 
 @Value
 public class RestaurantCommand {
-    @NotEmpty
+    @NonNull
     private String city;
-    @NotEmpty
+    @NonNull
     private String street;
 
     @JsonCreator

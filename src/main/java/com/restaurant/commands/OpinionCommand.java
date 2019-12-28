@@ -2,17 +2,18 @@ package com.restaurant.commands;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.NonNull;
 import lombok.Value;
-
-import javax.validation.constraints.NotEmpty;
+import org.springframework.validation.annotation.Validated;
 
 @Value
+@Validated
 public class OpinionCommand {
-    @NotEmpty
+    @NonNull
     private Long customerId;
-    @NotEmpty
+    @NonNull
     private Integer restaurantId;
-    @NotEmpty
+    @NonNull
     private String textOpinion;
 
     @JsonCreator

@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class OpinionServiceImpl implements OpinionService{
+public class OpinionServiceImpl implements OpinionService {
     private final OpinionRepository opinionRepository;
 
     @Override

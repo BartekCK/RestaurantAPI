@@ -38,8 +38,8 @@ public class DbInit implements CommandLineRunner {
         if (!userJPARepository.existsByUsername("admin")) {
             Set<Role> roles = new HashSet<>();
             roles.add(roleJPARepository
-                            .findByName(RoleName.ROLE_ADMIN)
-                            .orElseThrow(() -> new RuntimeException("Error in DBINIT"))
+                    .findByName(RoleName.ROLE_ADMIN)
+                    .orElseThrow(() -> new RuntimeException("Error in DBINIT"))
             );
             roles.add(roleJPARepository
                     .findByName(RoleName.ROLE_USER)

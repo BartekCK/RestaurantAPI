@@ -10,7 +10,8 @@ public final class OpinionMapper {
     public static OpinionView mapOpinionToOpinionView(Opinion opinion) {
         return OpinionView.builder()
                 .opinionId(opinion.getOpinionId())
-                .customer(UserMapper.mapUserToUserPrincipal(opinion.getCustomer()))
+                .userId(opinion.getCustomer().getUserId())
+                .userName(opinion.getCustomer().getUsername())
                 .restaurant(RestaurantMapper.mapRestaurantToRestaurantView(opinion.getRestaurant()))
                 .textOpinion(opinion.getTextOpinion())
                 .build();
