@@ -7,8 +7,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "orders")
 @Data
+@Table(name = "orders")
 public class Order {
 
     @Id
@@ -18,10 +18,12 @@ public class Order {
     @Column(nullable = false)
     private double bill;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name="reservation_id", nullable=false)
     private Reservation reservation;
 
     @ManyToOne
+    @JoinColumn(name = "employee_id")
     private Employee employee;
 
     @ManyToMany

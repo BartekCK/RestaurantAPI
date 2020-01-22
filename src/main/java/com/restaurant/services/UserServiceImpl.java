@@ -2,7 +2,7 @@ package com.restaurant.services;
 
 import com.restaurant.commands.request.UserDTO;
 import com.restaurant.repositories.UserRepository;
-import com.restaurant.views.UserPrincipal;
+import com.restaurant.commands.response.UserPrincipal;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;

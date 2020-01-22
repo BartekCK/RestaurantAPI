@@ -1,7 +1,7 @@
 package com.restaurant.services;
 
 import com.restaurant.commands.request.ReservationDTO;
-import com.restaurant.views.ReservationView;
+import com.restaurant.commands.response.ReservationView;
 import org.springframework.http.ResponseEntity;
 
 public interface ReservationService {

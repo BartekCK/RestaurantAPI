@@ -1,11 +1,11 @@
 package com.restaurant.repositories;
 
-import com.restaurant.commands.DishCommand;
+import com.restaurant.commands.request.DishDTO;
 import com.restaurant.models.Dish;
 import com.restaurant.repositories.jpa.DishJPARepository;
 import com.restaurant.utility.exceptions.DishNotFoundException;
 import com.restaurant.utility.mappers.DishMapper;
-import com.restaurant.views.DishView;
+import com.restaurant.commands.response.DishView;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -19,15 +19,15 @@ public class DishRepositoryImpl implements DishRepository {
     private final DishJPARepository dishJPARepository;
 
     @Override
-    public Long saveDish(DishCommand dishCommand) {
-        return dishJPARepository.save(buildDishFromCommand(dishCommand)).getDishId();
+    public Long saveDish(DishDTO dishDTO) {
+        return dishJPARepository.save(buildDishFromCommand(dishDTO)).getDishId();
 
     }
 
     @Override
-    public DishView updateDish(Long dishId, DishCommand dishCommand) {
+    public DishView updateDish(Long dishId, DishDTO dishDTO) {
         Dish dish = getDish(dishId);
-        Dish updatedDish = getUpdatedDish(dishCommand, dish);
+        Dish updatedDish = getUpdatedDish(dishDTO, dish);
         dishJPARepository.save(updatedDish);
         return DishMapper.mapDishToDishView(updatedDish);
     }
@@ -49,11 +49,11 @@ public class DishRepositoryImpl implements DishRepository {
                 .collect(Collectors.toList());
     }
 
-    private Dish buildDishFromCommand(DishCommand dishCommand) {
+    private Dish buildDishFromCommand(DishDTO dishDTO) {
         return Dish.builder()
-                .dishName(dishCommand.getDishName())
-                .dishDescription(dishCommand.getDishDescription())
-                .grossPrice(dishCommand.getGrossPrice())
+                .dishName(dishDTO.getDishName())
+                .dishDescription(dishDTO.getDishDescription())
+                .grossPrice(dishDTO.getGrossPrice())
                 .build();
     }
 
@@ -62,11 +62,11 @@ public class DishRepositoryImpl implements DishRepository {
                 .orElseThrow(() -> new DishNotFoundException(dishId));
     }
 
-    private Dish getUpdatedDish(DishCommand dishCommand, Dish dish) {
-        dish.setDishName(dishCommand.getDishName());
-        dish.setDishDescription(dishCommand.getDishDescription());
-        dish.setGrossPrice(dishCommand.getGrossPrice());
-        dish.setCookingTime(dishCommand.getCookingTime());
+    private Dish getUpdatedDish(DishDTO dishDTO, Dish dish) {
+        dish.setDishName(dishDTO.getDishName());
+        dish.setDishDescription(dishDTO.getDishDescription());
+        dish.setGrossPrice(dishDTO.getGrossPrice());
+        dish.setCookingTime(dishDTO.getCookingTime());
         return dish;
     }
 }

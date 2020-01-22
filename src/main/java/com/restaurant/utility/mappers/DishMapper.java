@@ -1,7 +1,7 @@
 package com.restaurant.utility.mappers;
 
 import com.restaurant.models.Dish;
-import com.restaurant.views.DishView;
+import com.restaurant.commands.response.DishView;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 

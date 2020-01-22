@@ -1,7 +1,7 @@
 package com.restaurant.repositories;
 
 import com.restaurant.commands.request.UserDTO;
-import com.restaurant.views.UserPrincipal;
+import com.restaurant.commands.response.UserPrincipal;
 import org.springframework.http.ResponseEntity;
 
 import javax.transaction.Transactional;

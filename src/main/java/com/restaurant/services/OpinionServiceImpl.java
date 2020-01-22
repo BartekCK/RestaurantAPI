@@ -1,8 +1,8 @@
 package com.restaurant.services;
 
-import com.restaurant.commands.OpinionCommand;
+import com.restaurant.commands.request.OpinionDTO;
 import com.restaurant.repositories.OpinionRepository;
-import com.restaurant.views.OpinionView;
+import com.restaurant.commands.response.OpinionView;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +14,13 @@ public class OpinionServiceImpl implements OpinionService{
     private final OpinionRepository opinionRepository;
 
     @Override
-    public Long addOpinion(OpinionCommand opinionCommand) {
-        return opinionRepository.saveOpinion(opinionCommand);
+    public Long addOpinion(OpinionDTO opinionDTO) {
+        return opinionRepository.saveOpinion(opinionDTO);
     }
 
     @Override
-    public OpinionView updateOpinion(Long opinionId, OpinionCommand opinionCommand) {
-        return opinionRepository.updateOpinion(opinionId, opinionCommand);
+    public OpinionView updateOpinion(Long opinionId, OpinionDTO opinionDTO) {
+        return opinionRepository.updateOpinion(opinionId, opinionDTO);
     }
 
     @Override

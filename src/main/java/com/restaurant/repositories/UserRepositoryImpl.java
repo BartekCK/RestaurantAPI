@@ -8,7 +8,7 @@ import com.restaurant.repositories.jpa.EmployeeJPARepository;
 import com.restaurant.repositories.jpa.RoleJPARepository;
 import com.restaurant.repositories.jpa.UserJPARepository;
 import com.restaurant.utility.mappers.UserMapper;
-import com.restaurant.views.UserPrincipal;
+import com.restaurant.commands.response.UserPrincipal;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

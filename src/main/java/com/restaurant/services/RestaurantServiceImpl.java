@@ -1,8 +1,8 @@
 package com.restaurant.services;
 
-import com.restaurant.commands.RestaurantCommand;
+import com.restaurant.commands.request.RestaurantDTO;
 import com.restaurant.repositories.RestaurantRepository;
-import com.restaurant.views.RestaurantView;
+import com.restaurant.commands.response.RestaurantView;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,13 +15,13 @@ public class RestaurantServiceImpl implements RestaurantService {
     public final RestaurantRepository restaurantRepository;
 
     @Override
-    public Integer addRestaurant(RestaurantCommand restaurantCommand) {
-        return restaurantRepository.saveRestaurant(restaurantCommand);
+    public Integer addRestaurant(RestaurantDTO restaurantDTO) {
+        return restaurantRepository.saveRestaurant(restaurantDTO);
     }
 
     @Override
-    public RestaurantView updateRestaurant(Integer restaurantId, RestaurantCommand restaurantCommand) {
-        return restaurantRepository.updateRestaurant(restaurantId, restaurantCommand);
+    public RestaurantView updateRestaurant(Integer restaurantId, RestaurantDTO restaurantDTO) {
+        return restaurantRepository.updateRestaurant(restaurantId, restaurantDTO);
     }
 
     @Override

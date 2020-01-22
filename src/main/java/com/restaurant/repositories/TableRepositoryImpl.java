@@ -1,6 +1,6 @@
 package com.restaurant.repositories;
 
-import com.restaurant.commands.TableCommand;
+import com.restaurant.commands.request.TableDTO;
 import com.restaurant.models.Restaurant;
 import com.restaurant.models.Table;
 import com.restaurant.repositories.jpa.RestaurantJPARepository;
@@ -8,7 +8,7 @@ import com.restaurant.repositories.jpa.TableJPARepository;
 import com.restaurant.utility.exceptions.RestaurantNotFoundException;
 import com.restaurant.utility.exceptions.TableNotFoundException;
 import com.restaurant.utility.mappers.TableMapper;
-import com.restaurant.views.TableView;
+import com.restaurant.commands.response.TableView;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -24,14 +24,14 @@ public class TableRepositoryImpl implements TableRepository {
     private final RestaurantJPARepository restaurantJPARepository;
 
     @Override
-    public Long saveTable(TableCommand tableCommand) {
-        return tableJPARepository.save(buildTableFromCommand(tableCommand)).getTableId();
+    public Long saveTable(TableDTO tableDTO) {
+        return tableJPARepository.save(buildTableFromCommand(tableDTO)).getTableId();
     }
 
     @Override
-    public TableView updateTable(Long tableId, TableCommand tableCommand) {
+    public TableView updateTable(Long tableId, TableDTO tableDTO) {
         Table table = getTable(tableId);
-        Table updatedTable = getUpdatedTable(tableCommand, table);
+        Table updatedTable = getUpdatedTable(tableDTO, table);
         tableJPARepository.save(updatedTable);
         return TableMapper.mapTableToTableView(table);
     }
@@ -46,6 +46,7 @@ public class TableRepositoryImpl implements TableRepository {
 
     @Override
     public List<TableView> getAllTables() {
+
         return tableJPARepository
                 .findAll()
                 .stream()
@@ -63,9 +64,12 @@ public class TableRepositoryImpl implements TableRepository {
                 .collect(Collectors.toList());
     }
 
-    private Table buildTableFromCommand(TableCommand tableCommand) {
+    private Table buildTableFromCommand(TableDTO tableDTO) {
+
+        Restaurant restaurant = restaurantJPARepository.findById(tableDTO.getRestaurantId()).orElseThrow(() -> new RestaurantNotFoundException(tableDTO.getRestaurantId()));
         return Table.builder()
-                .seatsNumber(tableCommand.getSeatsNumber())
+                .seatsNumber(tableDTO.getSeatsNumber())
+                .restaurant(restaurant)
                 .build();
     }
 
@@ -74,12 +78,10 @@ public class TableRepositoryImpl implements TableRepository {
                 .orElseThrow(() -> new TableNotFoundException(tableId));
     }
 
-    private Table getUpdatedTable(TableCommand tableCommand, Table table) {
-        table.setSeatsNumber(tableCommand.getSeatsNumber());
-        Optional<Restaurant> restaurant = restaurantJPARepository.findById(tableCommand.getRestaurantId());
-        if (!restaurant.isPresent())
-            throw new RestaurantNotFoundException(tableCommand.getRestaurantId());
-        table.setRestaurant(restaurant.get());
+    private Table getUpdatedTable(TableDTO tableDTO, Table table) {
+        table.setSeatsNumber(tableDTO.getSeatsNumber());
+        Restaurant restaurant = restaurantJPARepository.findById(tableDTO.getRestaurantId()).orElseThrow(() -> new RestaurantNotFoundException(tableDTO.getRestaurantId()));
+        table.setRestaurant(restaurant);
         return table;
     }
 }

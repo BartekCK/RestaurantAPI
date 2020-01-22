@@ -1,7 +1,7 @@
 package com.restaurant.utility.mappers;
 
 import com.restaurant.models.Employee;
-import com.restaurant.views.EmployeeView;
+import com.restaurant.commands.response.EmployeeView;
 
 public class EmployeeMapper {
 

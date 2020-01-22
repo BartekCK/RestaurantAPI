@@ -1,4 +1,4 @@
-package com.restaurant.views;
+package com.restaurant.commands.response;
 
 import lombok.Builder;
 import lombok.Data;

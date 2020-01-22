@@ -1,8 +1,8 @@
 package com.restaurant.services;
 
-import com.restaurant.commands.TableCommand;
+import com.restaurant.commands.request.TableDTO;
 import com.restaurant.repositories.TableRepository;
-import com.restaurant.views.TableView;
+import com.restaurant.commands.response.TableView;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,13 +15,13 @@ public class TableServiceImpl implements TableService {
     private final TableRepository tableRepository;
 
     @Override
-    public Long addTable(TableCommand tableCommand) {
-        return tableRepository.saveTable(tableCommand);
+    public Long addTable(TableDTO tableDTO) {
+        return tableRepository.saveTable(tableDTO);
     }
 
     @Override
-    public TableView updateTable(Long tableId, TableCommand tableCommand) {
-        return tableRepository.updateTable(tableId, tableCommand);
+    public TableView updateTable(Long tableId, TableDTO tableDTO) {
+        return tableRepository.updateTable(tableId, tableDTO);
     }
 
     @Override

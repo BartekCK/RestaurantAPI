@@ -1,7 +1,7 @@
 package com.restaurant.repositories;
 
 import com.restaurant.commands.request.EmployeeDTO;
-import com.restaurant.views.EmployeeView;
+import com.restaurant.commands.response.EmployeeView;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

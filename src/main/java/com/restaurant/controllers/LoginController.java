@@ -24,7 +24,7 @@ public class LoginController {
 
     private AuthenticationManager manager;
 
-    @PostMapping("/signin")
+    @PostMapping("/signin")//OK
     public ResponseEntity authenticateUser(@RequestBody LoginDTO loginDTO) {
 
         Authentication authentication = manager.authenticate(

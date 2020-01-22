@@ -1,7 +1,7 @@
 package com.restaurant.services;
 
 import com.restaurant.commands.request.UserDTO;
-import com.restaurant.views.UserPrincipal;
+import com.restaurant.commands.response.UserPrincipal;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

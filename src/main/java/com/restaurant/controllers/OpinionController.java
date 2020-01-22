@@ -1,8 +1,8 @@
 package com.restaurant.controllers;
 
-import com.restaurant.commands.OpinionCommand;
+import com.restaurant.commands.request.OpinionDTO;
 import com.restaurant.services.OpinionService;
-import com.restaurant.views.OpinionView;
+import com.restaurant.commands.response.OpinionView;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -18,14 +18,14 @@ public class OpinionController {
 
     @PostMapping
     @PreAuthorize("hasRole('USER')")
-    public Long addOpinion(@RequestBody @Valid OpinionCommand opinionCommand) {
-        return opinionService.addOpinion(opinionCommand);
+    public Long addOpinion(@RequestBody @Valid OpinionDTO opinionDTO) {
+        return opinionService.addOpinion(opinionDTO);
     }
 
     @PutMapping("/{opinionId}")
     @PreAuthorize("hasRole('USER')")
-    public OpinionView updateOpinion(@PathVariable Long opinionId, @RequestBody @Valid OpinionCommand opinionCommand) {
-        return opinionService.updateOpinion(opinionId, opinionCommand);
+    public OpinionView updateOpinion(@PathVariable Long opinionId, @RequestBody @Valid OpinionDTO opinionDTO) {
+        return opinionService.updateOpinion(opinionId, opinionDTO);
     }
 
     @GetMapping("/{opinionId}")

@@ -1,7 +1,7 @@
 package com.restaurant.utility.mappers;
 
 import com.restaurant.models.Opinion;
-import com.restaurant.views.OpinionView;
+import com.restaurant.commands.response.OpinionView;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 

@@ -1,8 +1,8 @@
 package com.restaurant.controllers;
 
-import com.restaurant.commands.DishCommand;
+import com.restaurant.commands.request.DishDTO;
 import com.restaurant.services.DishService;
-import com.restaurant.views.DishView;
+import com.restaurant.commands.response.DishView;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,14 +18,14 @@ public class DishController {
 
     @PostMapping("/dish")
     // @PreAuthorize("hasRole('ADMIN')")
-    public Long addDishToMenu(@RequestBody @Valid DishCommand dishCommand) {
-        return dishService.addDishToMenu(dishCommand);
+    public Long addDishToMenu(@RequestBody @Valid DishDTO dishDTO) {
+        return dishService.addDishToMenu(dishDTO);
     }
 
     @PutMapping("/dish/{dishId}")
     //@PreAuthorize("hasRole('ADMIN')")
-    public DishView updateDish(@PathVariable Long dishId, @RequestBody @Valid DishCommand dishCommand) {
-        return dishService.updateDish(dishId, dishCommand);
+    public DishView updateDish(@PathVariable Long dishId, @RequestBody @Valid DishDTO dishDTO) {
+        return dishService.updateDish(dishId, dishDTO);
     }
 
     @GetMapping("/dish/{dishId}")

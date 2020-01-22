@@ -13,6 +13,7 @@ import java.util.Set;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@javax.persistence.Table(name = "restaurants")
 public class Restaurant {
 
     @Id
