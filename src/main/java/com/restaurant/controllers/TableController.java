@@ -11,24 +11,12 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/table")
+@RequestMapping("api/tables")
 public class TableController {
 
     private final TableService tableService;
 
-    @PostMapping
-    //@PreAuthorize("hasRole('ADMIN')")
-    public Long addTable(@RequestBody @Valid TableDTO tableDTO) {
-        return tableService.addTable(tableDTO);
-    }
-
-    @PutMapping("/{tableId}")
-    //@PreAuthorize("hasRole('ADMIN')")
-    public TableView updateTable(@PathVariable Long tableId, @RequestBody @Valid TableDTO tableDTO) {
-        return tableService.updateTable(tableId, tableDTO);
-    }
-
-    @GetMapping("/{tableId}")
+    @GetMapping("{tableId}")
     //@PreAuthorize("hasRole('ADMIN')")
     public TableView getTableById(@PathVariable Long tableId) {
         return tableService.getTableById(tableId);

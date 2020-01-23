@@ -16,8 +16,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository employeeRepository;
 
     @Override
-    public ResponseEntity<EmployeeView> createEmployee(String username, EmployeeDTO employeeDTO) {
-        return employeeRepository.saveEmployee(username, employeeDTO);
+    public ResponseEntity<EmployeeView> createEmployee(Long userId, EmployeeDTO employeeDTO) {
+        return employeeRepository.saveEmployee(userId, employeeDTO);
     }
 
     @Override

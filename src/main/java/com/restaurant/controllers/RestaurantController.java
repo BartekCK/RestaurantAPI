@@ -1,5 +1,6 @@
 package com.restaurant.controllers;
 
+import com.restaurant.commands.request.OpinionDTO;
 import com.restaurant.commands.request.RestaurantDTO;
 import com.restaurant.commands.response.OpinionView;
 import com.restaurant.commands.response.RestaurantView;
@@ -14,25 +15,13 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("restaurant")
+@RequestMapping("api/restaurants")
 @AllArgsConstructor
 public class RestaurantController {
 
     private final RestaurantService restaurantService;
     private final TableService tableService;
     private final OpinionService opinionService;
-
-    @PostMapping
-    //  @PreAuthorize("hasRole('ADMIN')")
-    public Integer addRestaurant(@RequestBody @Valid RestaurantDTO restaurantDTO) {
-        return restaurantService.addRestaurant(restaurantDTO);
-    }
-
-    @PutMapping("/{restaurantId}")
-    //@PreAuthorize("hasRole('ADMIN')")
-    public RestaurantView updateRestaurant(@PathVariable Integer restaurantId, @RequestBody RestaurantDTO restaurantDTO) {
-        return restaurantService.updateRestaurant(restaurantId, restaurantDTO);
-    }
 
     @GetMapping("/{restaurantId}")
     public RestaurantView getRestaurantById(@PathVariable Integer restaurantId) {
@@ -53,4 +42,12 @@ public class RestaurantController {
     public List<OpinionView> getOpinionsByRestaurantId(@PathVariable Integer restaurantId) {
         return opinionService.getAllOpinionsByRestaurantId(restaurantId);
     }
+
+    @PostMapping("{restaurantId}/opinions")
+    //@PreAuthorize("hasRole('USER')")
+    public Long addOpinion(@PathVariable Integer restaurantId,@RequestBody OpinionDTO opinionDTO) {
+        return opinionService.addOpinion(opinionDTO);
+    }
+
+
 }

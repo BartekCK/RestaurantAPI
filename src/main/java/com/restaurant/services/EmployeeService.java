@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface EmployeeService {
 
-    ResponseEntity<EmployeeView> createEmployee(String username, EmployeeDTO employeeDTO);
+    ResponseEntity<EmployeeView> createEmployee(Long userId, EmployeeDTO employeeDTO);
 
     ResponseEntity deleteEmployee(Long employeeId);
 

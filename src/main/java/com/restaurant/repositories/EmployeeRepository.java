@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface EmployeeRepository {
 
-    ResponseEntity<EmployeeView> saveEmployee(String username, EmployeeDTO employeeDTO);
+    ResponseEntity<EmployeeView> saveEmployee(Long userId, EmployeeDTO employeeDTO);
 
     ResponseEntity deleteEmployee(Long employeeId);
 

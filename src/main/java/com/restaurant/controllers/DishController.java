@@ -11,24 +11,12 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("menu")
+@RequestMapping("api/menu")
 public class DishController {
 
     private final DishService dishService;
 
-    @PostMapping("/dish")
-    // @PreAuthorize("hasRole('ADMIN')")
-    public Long addDishToMenu(@RequestBody @Valid DishDTO dishDTO) {
-        return dishService.addDishToMenu(dishDTO);
-    }
-
-    @PutMapping("/dish/{dishId}")
-    //@PreAuthorize("hasRole('ADMIN')")
-    public DishView updateDish(@PathVariable Long dishId, @RequestBody @Valid DishDTO dishDTO) {
-        return dishService.updateDish(dishId, dishDTO);
-    }
-
-    @GetMapping("/dish/{dishId}")
+    @GetMapping("{dishId}")
     public DishView getDishById(@PathVariable Long dishId) {
         return dishService.getDishById(dishId);
     }

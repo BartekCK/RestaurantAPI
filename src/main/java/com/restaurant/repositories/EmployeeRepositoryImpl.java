@@ -31,8 +31,8 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
 
     @Override
-    public ResponseEntity<EmployeeView> saveEmployee(String username, EmployeeDTO employeeDTO) {
-        User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found" + username));
+    public ResponseEntity<EmployeeView> saveEmployee(Long userId, EmployeeDTO employeeDTO) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new UsernameNotFoundException("User not found" + userId));
 
         employeeDTO.getRoles().forEach(role -> {
             switch (role) {

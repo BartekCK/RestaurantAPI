@@ -16,15 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("index/")
+@RequestMapping("index")
 @AllArgsConstructor
 public class LoginController {
 
     private JwtProvider provider;
-
     private AuthenticationManager manager;
 
-    @PostMapping("/signin")//OK
+    @PostMapping("signin")//OK
     public ResponseEntity authenticateUser(@RequestBody LoginDTO loginDTO) {
 
         Authentication authentication = manager.authenticate(

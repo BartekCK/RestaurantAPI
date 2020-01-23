@@ -11,38 +11,26 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("opinion")
+@RequestMapping("api/opinions")
 public class OpinionController {
 
     private final OpinionService opinionService;
 
-    @PostMapping
-    //@PreAuthorize("hasRole('USER')")
-    public Long addOpinion(@RequestBody OpinionDTO opinionDTO) {
-        return opinionService.addOpinion(opinionDTO);
-    }
-
-    @PutMapping("/{opinionId}")
-    //@PreAuthorize("hasRole('USER')")
-    public OpinionView updateOpinion(@PathVariable Long opinionId, @RequestBody @Valid OpinionDTO opinionDTO) {
-        return opinionService.updateOpinion(opinionId, opinionDTO);
-    }
-
-    @GetMapping("/{opinionId}")
+    @GetMapping("{opinionId}")
     //@PreAuthorize("hasRole('ADMIN')")
     public OpinionView getOpinionById(@PathVariable Long opinionId) {
         return opinionService.getOpinionById(opinionId);
     }
 
-    @GetMapping("/user/{userId}")
-    //@PreAuthorize("hasRole('ADMIN')")
-    public List<OpinionView> getOpinionsByUserId(@PathVariable Long userId) {
-        return opinionService.getAllOpinionsByUserId(userId);
-    }
+//    @GetMapping("user/{userId}")// In User Controller
+//    //@PreAuthorize("hasRole('ADMIN')")
+//    public List<OpinionView> getOpinionsByUserId(@PathVariable Long userId) {
+//        return opinionService.getAllOpinionsByUserId(userId);
+//    }
 
-    @GetMapping("/restaurant/{restaurantId}")
-    //@PreAuthorize("hasRole('ADMIN')")
-    public List<OpinionView> getOpinionsByRestaurantId(@PathVariable Integer restaurantId) {
-        return opinionService.getAllOpinionsByRestaurantId(restaurantId);
-    }
+//    @GetMapping("/restaurant/{restaurantId}")//In Restaurant Controller
+//    //@PreAuthorize("hasRole('ADMIN')")
+//    public List<OpinionView> getOpinionsByRestaurantId(@PathVariable Integer restaurantId) {
+//        return opinionService.getAllOpinionsByRestaurantId(restaurantId);
+//    }
 }
