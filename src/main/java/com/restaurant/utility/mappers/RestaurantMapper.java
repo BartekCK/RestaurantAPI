@@ -1,7 +1,7 @@
 package com.restaurant.utility.mappers;
 
+import com.restaurant.commands.response.RestaurantView;
 import com.restaurant.models.Restaurant;
-import com.restaurant.views.RestaurantView;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 

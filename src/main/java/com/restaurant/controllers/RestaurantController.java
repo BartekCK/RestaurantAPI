@@ -1,12 +1,12 @@
 package com.restaurant.controllers;
 
-import com.restaurant.commands.RestaurantCommand;
+import com.restaurant.commands.request.RestaurantDTO;
+import com.restaurant.commands.response.OpinionView;
+import com.restaurant.commands.response.RestaurantView;
+import com.restaurant.commands.response.TableView;
 import com.restaurant.services.OpinionService;
 import com.restaurant.services.RestaurantService;
 import com.restaurant.services.TableService;
-import com.restaurant.views.OpinionView;
-import com.restaurant.views.RestaurantView;
-import com.restaurant.views.TableView;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,14 +24,14 @@ public class RestaurantController {
 
     @PostMapping
     //  @PreAuthorize("hasRole('ADMIN')")
-    public Integer addRestaurant(@RequestBody @Valid RestaurantCommand restaurantCommand) {
-        return restaurantService.addRestaurant(restaurantCommand);
+    public Integer addRestaurant(@RequestBody @Valid RestaurantDTO restaurantDTO) {
+        return restaurantService.addRestaurant(restaurantDTO);
     }
 
     @PutMapping("/{restaurantId}")
     //@PreAuthorize("hasRole('ADMIN')")
-    public RestaurantView updateRestaurant(@PathVariable Integer restaurantId, @RequestBody RestaurantCommand restaurantCommand) {
-        return restaurantService.updateRestaurant(restaurantId, restaurantCommand);
+    public RestaurantView updateRestaurant(@PathVariable Integer restaurantId, @RequestBody RestaurantDTO restaurantDTO) {
+        return restaurantService.updateRestaurant(restaurantId, restaurantDTO);
     }
 
     @GetMapping("/{restaurantId}")

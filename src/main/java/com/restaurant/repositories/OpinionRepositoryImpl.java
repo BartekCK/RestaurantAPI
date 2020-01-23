@@ -1,6 +1,7 @@
 package com.restaurant.repositories;
 
-import com.restaurant.commands.OpinionCommand;
+import com.restaurant.commands.request.OpinionDTO;
+import com.restaurant.commands.response.OpinionView;
 import com.restaurant.models.Opinion;
 import com.restaurant.models.Restaurant;
 import com.restaurant.models.User;
@@ -11,7 +12,6 @@ import com.restaurant.utility.exceptions.OpinionNotFoundException;
 import com.restaurant.utility.exceptions.RestaurantNotFoundException;
 import com.restaurant.utility.exceptions.UserNotFoundException;
 import com.restaurant.utility.mappers.OpinionMapper;
-import com.restaurant.views.OpinionView;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -28,16 +28,16 @@ public class OpinionRepositoryImpl implements OpinionRepository {
     private final RestaurantJPARepository restaurantJPARepository;
 
     @Override
-    public Long saveOpinion(OpinionCommand opinionCommand) {
+    public Long saveOpinion(OpinionDTO opinionDTO) {
         return opinionJPARepository
-                .save(buildOpinionFromCommand(opinionCommand))
+                .save(buildOpinionFromCommand(opinionDTO))
                 .getOpinionId();
     }
 
     @Override
-    public OpinionView updateOpinion(Long opinionId, OpinionCommand opinionCommand) {
+    public OpinionView updateOpinion(Long opinionId, OpinionDTO opinionDTO) {
         Opinion opinion = findOpinion(opinionId);
-        Opinion updatedOpinion = getUpdatedOpinion(opinionCommand, opinion);
+        Opinion updatedOpinion = getUpdatedOpinion(opinionDTO, opinion);
         opinionJPARepository.save(updatedOpinion);
         return OpinionMapper.mapOpinionToOpinionView(updatedOpinion);
     }
@@ -70,15 +70,15 @@ public class OpinionRepositoryImpl implements OpinionRepository {
                 .collect(Collectors.toList());
     }
 
-    private Opinion buildOpinionFromCommand(OpinionCommand opinionCommand) {
-        Optional<User> customer = userJPARepository.findById(opinionCommand.getCustomerId());
+    private Opinion buildOpinionFromCommand(OpinionDTO opinionDTO) {
+        Optional<User> customer = userJPARepository.findById(opinionDTO.getCustomerId());
         if (!customer.isPresent())
-            throw new UserNotFoundException(opinionCommand.getCustomerId());
-        Restaurant restaurant = findRestaurant(opinionCommand.getRestaurantId());
+            throw new UserNotFoundException(opinionDTO.getCustomerId());
+        Restaurant restaurant = findRestaurant(opinionDTO.getRestaurantId());
         return Opinion.builder()
                 .customer(customer.get())
                 .restaurant(restaurant)
-                .textOpinion(opinionCommand.getTextOpinion())
+                .textOpinion(opinionDTO.getTextOpinion())
                 .build();
     }
 
@@ -99,10 +99,10 @@ public class OpinionRepositoryImpl implements OpinionRepository {
                 .orElseThrow(() -> new UserNotFoundException(userId));
     }
 
-    private Opinion getUpdatedOpinion(OpinionCommand opinionCommand, Opinion opinion) {
-        opinion.setRestaurant(findRestaurant(opinionCommand.getRestaurantId()));
-        opinion.setCustomer(findUser(opinionCommand.getCustomerId()));
-        opinion.setTextOpinion(opinionCommand.getTextOpinion());
+    private Opinion getUpdatedOpinion(OpinionDTO opinionDTO, Opinion opinion) {
+        opinion.setRestaurant(findRestaurant(opinionDTO.getRestaurantId()));
+        opinion.setCustomer(findUser(opinionDTO.getCustomerId()));
+        opinion.setTextOpinion(opinionDTO.getTextOpinion());
         return opinion;
     }
 }

@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Table;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
@@ -15,6 +16,7 @@ import static com.restaurant.utility.constants.ExceptionMessages.OPINION_SIZE_ME
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Table(name = "opinions")
 public class Opinion {
 
     @Id
@@ -24,7 +26,8 @@ public class Opinion {
     @OneToOne
     private User customer;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
     @Size(max = 300, message = OPINION_SIZE_MESSAGE)

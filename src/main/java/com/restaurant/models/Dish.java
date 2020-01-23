@@ -1,33 +1,34 @@
 package com.restaurant.models;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "menu")
 public class Dish {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long dishId;
 
-    @NotBlank
+    @Column(nullable = false)
     private String dishName;
 
-    @NotBlank
+    @Column(nullable = false)
     private String dishDescription;
 
-    @NonNull
+    @Column(nullable = false)
     private double grossPrice;
 
-    @NonNull
+    @Column(nullable = false)
     private int cookingTime;
 }

@@ -1,4 +1,4 @@
-package com.restaurant.views;
+package com.restaurant.commands.response;
 
 import com.restaurant.models.User;
 import com.restaurant.utility.mappers.ReservationMapper;

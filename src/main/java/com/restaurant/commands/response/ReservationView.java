@@ -1,4 +1,4 @@
-package com.restaurant.views;
+package com.restaurant.commands.response;
 
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +13,4 @@ public class ReservationView {
     private LocalDateTime dateReservation;
     private String comments;
     private Long tableId;
-    private Long orderId;
-
 }

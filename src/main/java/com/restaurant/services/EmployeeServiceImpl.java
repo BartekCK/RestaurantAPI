@@ -1,8 +1,8 @@
 package com.restaurant.services;
 
 import com.restaurant.commands.request.EmployeeDTO;
+import com.restaurant.commands.response.EmployeeView;
 import com.restaurant.repositories.EmployeeRepository;
-import com.restaurant.views.EmployeeView;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package com.restaurant.utility.mappers;
 
+import com.restaurant.commands.response.TableView;
 import com.restaurant.models.Table;
-import com.restaurant.views.TableView;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
@@ -12,7 +12,7 @@ public final class TableMapper {
                 .tableId(table.getTableId())
                 .seatsNumber(table.getSeatsNumber())
                 .restaurant(RestaurantMapper.mapRestaurantToRestaurantView(table.getRestaurant()))
-                .reservationSet(table.getReservationSet())
                 .build();
+
     }
 }

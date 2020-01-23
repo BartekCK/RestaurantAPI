@@ -1,4 +1,4 @@
-package com.restaurant.commands;
+package com.restaurant.commands.request;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,21 +7,21 @@ import lombok.Value;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Value
 @Getter
-public class TableCommand {
+public class TableDTO {
     @Min(value = 1)
     @Max(value = 10)
-    @NotEmpty
+    @NotNull
     private int seatsNumber;
-    @NotEmpty
+    //@NotEmpty
     private Integer restaurantId;
 
     @JsonCreator
-    public TableCommand(@JsonProperty(value = "seatsNumber", required = true) int seatsNumber,
-                        @JsonProperty(value = "restaurantId", required = true) Integer restaurantId) {
+    public TableDTO(@JsonProperty(value = "seatsNumber", required = true) int seatsNumber,
+                    @JsonProperty(value = "restaurantId", required = true) Integer restaurantId) {
         this.seatsNumber = seatsNumber;
         this.restaurantId = restaurantId;
     }

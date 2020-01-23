@@ -1,7 +1,9 @@
 package com.restaurant.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -9,7 +11,9 @@ import java.util.Set;
 @Data
 @Entity
 @Builder
-@javax.persistence.Table(name = "restaurants_table")
+@NoArgsConstructor
+@AllArgsConstructor
+@javax.persistence.Table(name = "tables")
 public class Table {
 
     @Id
@@ -20,9 +24,10 @@ public class Table {
     private int seatsNumber;
 
     @ManyToOne
+    @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
 
-    @OneToMany(mappedBy = "reservationId")
+    @OneToMany(mappedBy = "table")
     private Set<Reservation> reservationSet;
 
     @Override
@@ -37,5 +42,15 @@ public class Table {
             return tableId.equals(table.tableId) && seatsNumber == table.seatsNumber;
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Table{" +
+                "tableId=" + tableId +
+                ", seatsNumber=" + seatsNumber +
+                //", restaurant=" + restaurant +
+                ", reservationSet=" + reservationSet +
+                '}';
     }
 }

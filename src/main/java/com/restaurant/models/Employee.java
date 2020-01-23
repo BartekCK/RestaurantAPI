@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Table;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Set;
@@ -14,6 +15,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "employees")
 public class Employee {
 
     @Id
@@ -32,7 +34,7 @@ public class Employee {
     @Column(nullable = false)
     private double salary;
 
-    @OneToMany(mappedBy = "orderId")
+    @OneToMany(mappedBy = "employee")
     private Set<Order> orderSet;
 
 

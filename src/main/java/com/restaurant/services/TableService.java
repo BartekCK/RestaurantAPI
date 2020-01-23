@@ -1,14 +1,14 @@
 package com.restaurant.services;
 
-import com.restaurant.commands.TableCommand;
-import com.restaurant.views.TableView;
+import com.restaurant.commands.request.TableDTO;
+import com.restaurant.commands.response.TableView;
 
 import java.util.List;
 
 public interface TableService {
-    Long addTable(TableCommand tableCommand);
+    Long addTable(TableDTO tableDTO);
 
-    TableView updateTable(Long tableId, TableCommand tableCommand);
+    TableView updateTable(Long tableId, TableDTO tableDTO);
 
     TableView getTableById(Long tableId);
 

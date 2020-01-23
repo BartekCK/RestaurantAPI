@@ -1,14 +1,14 @@
 package com.restaurant.repositories;
 
-import com.restaurant.commands.OpinionCommand;
-import com.restaurant.views.OpinionView;
+import com.restaurant.commands.request.OpinionDTO;
+import com.restaurant.commands.response.OpinionView;
 
 import java.util.List;
 
 public interface OpinionRepository {
-    Long saveOpinion(OpinionCommand opinionCommand);
+    Long saveOpinion(OpinionDTO opinionDTO);
 
-    OpinionView updateOpinion(Long opinionId, OpinionCommand opinionCommand);
+    OpinionView updateOpinion(Long opinionId, OpinionDTO opinionDTO);
 
     OpinionView getOpinionById(Long opinionId);
 

@@ -7,13 +7,14 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
-@javax.persistence.Table(name = "reservation")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@javax.persistence.Table(name = "reservations")
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,10 +24,11 @@ public class Reservation {
     private LocalDateTime dateReservation;
 
     @ManyToOne
+    @JoinColumn(name = "table_id", nullable = false)
     private Table table;
 
-    @OneToOne
-    private Order order;
+    @OneToMany(mappedBy = "reservation")
+    private List<Order> order;
 
     private String comments;
 

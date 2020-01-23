@@ -1,6 +1,7 @@
 package com.restaurant.repositories;
 
 import com.restaurant.commands.request.ReservationDTO;
+import com.restaurant.commands.response.ReservationView;
 import com.restaurant.models.Reservation;
 import com.restaurant.models.Table;
 import com.restaurant.models.User;
@@ -8,7 +9,6 @@ import com.restaurant.repositories.jpa.ReservationJPARepository;
 import com.restaurant.repositories.jpa.TableJPARepository;
 import com.restaurant.repositories.jpa.UserJPARepository;
 import com.restaurant.utility.mappers.ReservationMapper;
-import com.restaurant.views.ReservationView;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +34,7 @@ public class ReservationRepositoryImpl implements ReservationRepository {
 
         if (reservationJPARepository.existsByDateReservationBetweenAndTableEquals(reservationDTO.getDateReservation().minusHours(1), reservationDTO.getDateReservation().plusHours(1), table)) {
             //Check another LocalDataTime
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
 
         Reservation reservation = Reservation.builder()

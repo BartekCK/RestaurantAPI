@@ -1,6 +1,7 @@
 package com.restaurant.repositories;
 
 import com.restaurant.commands.request.UserDTO;
+import com.restaurant.commands.response.UserPrincipal;
 import com.restaurant.models.User;
 import com.restaurant.models.authority.Role;
 import com.restaurant.models.authority.RoleName;
@@ -8,7 +9,6 @@ import com.restaurant.repositories.jpa.EmployeeJPARepository;
 import com.restaurant.repositories.jpa.RoleJPARepository;
 import com.restaurant.repositories.jpa.UserJPARepository;
 import com.restaurant.utility.mappers.UserMapper;
-import com.restaurant.views.UserPrincipal;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

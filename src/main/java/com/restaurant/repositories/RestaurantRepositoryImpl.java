@@ -1,11 +1,11 @@
 package com.restaurant.repositories;
 
-import com.restaurant.commands.RestaurantCommand;
+import com.restaurant.commands.request.RestaurantDTO;
+import com.restaurant.commands.response.RestaurantView;
 import com.restaurant.models.Restaurant;
 import com.restaurant.repositories.jpa.RestaurantJPARepository;
 import com.restaurant.utility.exceptions.RestaurantNotFoundException;
 import com.restaurant.utility.mappers.RestaurantMapper;
-import com.restaurant.views.RestaurantView;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -19,16 +19,16 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
     private final RestaurantJPARepository restaurantJPARepository;
 
     @Override
-    public Integer saveRestaurant(RestaurantCommand restaurantCommand) {
+    public Integer saveRestaurant(RestaurantDTO restaurantDTO) {
         return restaurantJPARepository
-                .save(buildRestaurantFromCommand(restaurantCommand))
+                .save(buildRestaurantFromCommand(restaurantDTO))
                 .getRestaurantId();
     }
 
     @Override
-    public RestaurantView updateRestaurant(Integer restaurantId, RestaurantCommand restaurantCommand) {
+    public RestaurantView updateRestaurant(Integer restaurantId, RestaurantDTO restaurantDTO) {
         Restaurant restaurant = getRestaurant(restaurantId);
-        Restaurant updatedRestaurant = getUpdatedRestaurant(restaurantCommand, restaurant);
+        Restaurant updatedRestaurant = getUpdatedRestaurant(restaurantDTO, restaurant);
         restaurantJPARepository.save(updatedRestaurant);
         return RestaurantMapper.mapRestaurantToRestaurantView(updatedRestaurant);
     }
@@ -50,10 +50,10 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
                 .collect(Collectors.toList());
     }
 
-    private Restaurant buildRestaurantFromCommand(RestaurantCommand restaurantCommand) {
+    private Restaurant buildRestaurantFromCommand(RestaurantDTO restaurantDTO) {
         return Restaurant.builder()
-                .city(restaurantCommand.getCity())
-                .street(restaurantCommand.getStreet())
+                .city(restaurantDTO.getCity())
+                .street(restaurantDTO.getStreet())
                 .build();
     }
 
@@ -62,9 +62,9 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
                 .orElseThrow(() -> new RestaurantNotFoundException(restaurantId));
     }
 
-    private Restaurant getUpdatedRestaurant(RestaurantCommand restaurantCommand, Restaurant restaurant) {
-        restaurant.setCity(restaurantCommand.getCity());
-        restaurant.setStreet(restaurantCommand.getStreet());
+    private Restaurant getUpdatedRestaurant(RestaurantDTO restaurantDTO, Restaurant restaurant) {
+        restaurant.setCity(restaurantDTO.getCity());
+        restaurant.setStreet(restaurantDTO.getStreet());
         return restaurant;
     }
 }
