@@ -5,14 +5,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Value;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Value
 public class OpinionDTO {
-    @NotEmpty
+    @NotNull
     private Long customerId;
-    @NotEmpty
+    @NotNull
     private Integer restaurantId;
-    @NotEmpty
+    @NotNull
     private String textOpinion;
 
     @JsonCreator

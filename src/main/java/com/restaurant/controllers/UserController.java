@@ -51,12 +51,6 @@ public class UserController {
         return userService.deleteUser(userId);
     }
 
-    @PutMapping("opinions/{opinionId}")//without UserID
-    //@PreAuthorize("hasRole('USER')")
-    public OpinionView updateOpinion(@PathVariable Long opinionId, @RequestBody @Valid OpinionDTO opinionDTO) {
-        return opinionService.updateOpinion(opinionId, opinionDTO);
-    }
-
     @GetMapping("{userId}/opinions")
     //@PreAuthorize("hasRole('USER')")
     public List<OpinionView> getAllOpinionsByUserId(@PathVariable Long userId) {
