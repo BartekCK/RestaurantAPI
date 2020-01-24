@@ -14,8 +14,8 @@ public class OpinionServiceImpl implements OpinionService {
     private final OpinionRepository opinionRepository;
 
     @Override
-    public Long addOpinion(OpinionDTO opinionDTO) {
-        return opinionRepository.saveOpinion(opinionDTO);
+    public Long addOpinion(Long userId, Integer restaurantId, OpinionDTO opinionDTO) {
+        return opinionRepository.saveOpinion(userId, restaurantId, opinionDTO);
     }
 
     @Override

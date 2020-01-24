@@ -83,4 +83,5 @@ public class TableRepositoryImpl implements TableRepository {
         table.setRestaurant(restaurant);
         return table;
     }
+
 }

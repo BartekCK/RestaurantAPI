@@ -1,12 +1,13 @@
 package com.restaurant.controllers;
 
-import com.restaurant.commands.request.TableDTO;
 import com.restaurant.commands.response.TableView;
 import com.restaurant.services.TableService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController

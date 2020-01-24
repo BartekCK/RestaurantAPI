@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Table;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 
 import static com.restaurant.utility.constants.ExceptionMessages.OPINION_SIZE_MESSAGE;
 
@@ -22,6 +23,9 @@ public class Opinion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long opinionId;
+
+    @Column(nullable = false)
+    private LocalDateTime opinionDate;
 
     @OneToOne
     private User customer;

@@ -6,7 +6,7 @@ import com.restaurant.commands.response.OpinionView;
 import java.util.List;
 
 public interface OpinionRepository {
-    Long saveOpinion(OpinionDTO opinionDTO);
+    Long saveOpinion(Long userId, Integer restaurantId, OpinionDTO opinionDTO);
 
     OpinionView updateOpinion(Long opinionId, OpinionDTO opinionDTO);
 

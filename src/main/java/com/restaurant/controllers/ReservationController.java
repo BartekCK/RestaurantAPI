@@ -1,8 +1,7 @@
 package com.restaurant.controllers;
 
-import com.restaurant.commands.request.ReservationDTO;
-import com.restaurant.services.ReservationService;
 import com.restaurant.commands.response.ReservationView;
+import com.restaurant.services.ReservationService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

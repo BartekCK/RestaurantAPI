@@ -1,13 +1,12 @@
 package com.restaurant.controllers;
 
-import com.restaurant.commands.request.OpinionDTO;
 import com.restaurant.commands.response.OpinionView;
 import com.restaurant.services.OpinionService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor

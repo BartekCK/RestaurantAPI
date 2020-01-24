@@ -5,22 +5,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Value;
 
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDateTime;
 
 @Value
 public class OpinionDTO {
-    @NotEmpty
-    private Long customerId;
-    @NotEmpty
-    private Integer restaurantId;
+
     @NotEmpty
     private String textOpinion;
 
+    private LocalDateTime opinionDate;
+
     @JsonCreator
-    public OpinionDTO(@JsonProperty(value = "customerId", required = true) Long customerId,
-                      @JsonProperty(value = "restaurantId", required = true) Integer restaurantId,
-                      @JsonProperty(value = "textOpinion", required = true) String textOpinion) {
-        this.customerId = customerId;
-        this.restaurantId = restaurantId;
+    public OpinionDTO(@JsonProperty(value = "textOpinion", required = true) String textOpinion) {
         this.textOpinion = textOpinion;
+        opinionDate = LocalDateTime.now();
     }
 }

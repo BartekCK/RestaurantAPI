@@ -15,6 +15,7 @@ import com.restaurant.utility.mappers.OpinionMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -28,9 +29,13 @@ public class OpinionRepositoryImpl implements OpinionRepository {
     private final RestaurantJPARepository restaurantJPARepository;
 
     @Override
-    public Long saveOpinion(OpinionDTO opinionDTO) {
+    public Long saveOpinion(Long userId, Integer restaurantId, OpinionDTO opinionDTO) {
+        User user = findUser(userId);
+        Restaurant restaurant = findRestaurant(restaurantId);
+        if (checkUnique(userId, restaurantId))
+            throw new OpinionNotFoundException("Opinion exist");
         return opinionJPARepository
-                .save(buildOpinionFromCommand(opinionDTO))
+                .save(buildOpinionFromCommand(user, restaurant, opinionDTO))
                 .getOpinionId();
     }
 
@@ -70,15 +75,12 @@ public class OpinionRepositoryImpl implements OpinionRepository {
                 .collect(Collectors.toList());
     }
 
-    private Opinion buildOpinionFromCommand(OpinionDTO opinionDTO) {
-        Optional<User> customer = userJPARepository.findById(opinionDTO.getCustomerId());
-        if (!customer.isPresent())
-            throw new UserNotFoundException(opinionDTO.getCustomerId());
-        Restaurant restaurant = findRestaurant(opinionDTO.getRestaurantId());
+    private Opinion buildOpinionFromCommand(User user, Restaurant restaurant, OpinionDTO opinionDTO) {
         return Opinion.builder()
-                .customer(customer.get())
+                .customer(user)
                 .restaurant(restaurant)
                 .textOpinion(opinionDTO.getTextOpinion())
+                .opinionDate(LocalDateTime.now())
                 .build();
     }
 
@@ -100,9 +102,11 @@ public class OpinionRepositoryImpl implements OpinionRepository {
     }
 
     private Opinion getUpdatedOpinion(OpinionDTO opinionDTO, Opinion opinion) {
-        opinion.setRestaurant(findRestaurant(opinionDTO.getRestaurantId()));
-        opinion.setCustomer(findUser(opinionDTO.getCustomerId()));
         opinion.setTextOpinion(opinionDTO.getTextOpinion());
         return opinion;
+    }
+
+    private boolean checkUnique(Long userId, Integer restaurantId) {
+        return opinionJPARepository.existsByCustomerAndRestaurant(findUser(userId), findRestaurant(restaurantId));
     }
 }

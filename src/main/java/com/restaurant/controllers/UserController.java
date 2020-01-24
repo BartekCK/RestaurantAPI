@@ -11,7 +11,6 @@ import com.restaurant.services.ReservationService;
 import com.restaurant.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -49,6 +48,12 @@ public class UserController {
     //@PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity deleteUser(@PathVariable Long userId) {
         return userService.deleteUser(userId);
+    }
+
+    @PostMapping("{userId}/opinions/{restaurantId}")
+    //@PreAuthorize("hasRole('USER')")
+    public Long addOpinion(@PathVariable Long userId, @PathVariable Integer restaurantId, @RequestBody OpinionDTO opinionDTO) {
+        return opinionService.addOpinion(userId, restaurantId, opinionDTO);
     }
 
     @PutMapping("opinions/{opinionId}")//without UserID
