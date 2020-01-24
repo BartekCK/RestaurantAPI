@@ -42,12 +42,4 @@ public class RestaurantController {
     public List<OpinionView> getOpinionsByRestaurantId(@PathVariable Integer restaurantId) {
         return opinionService.getAllOpinionsByRestaurantId(restaurantId);
     }
-
-    @PostMapping("{restaurantId}/opinions")
-    //@PreAuthorize("hasRole('USER')")
-    public Long addOpinion(@PathVariable Integer restaurantId,@RequestBody OpinionDTO opinionDTO) {
-        return opinionService.addOpinion(opinionDTO);
-    }
-
-
 }
