@@ -17,7 +17,10 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(httpStatus).body(new ExceptionMessage(url, e.getMessage()));
     }
 
-    @ExceptionHandler({DishNotFoundException.class, OpinionNotFoundException.class, RestaurantNotFoundException.class, TableNotFoundException.class, UserNotFoundException.class})
+    @ExceptionHandler({DishNotFoundException.class, OpinionNotFoundException.class,
+            RestaurantNotFoundException.class, TableNotFoundException.class,
+            UserNotFoundException.class, ReservationNotFoundException.class,
+            EmployeeNotFoundException.class})
     @ResponseBody
     ResponseEntity<ExceptionMessage> handle404Error(HttpServletRequest request, Exception e) {
         return sendExceptionMessage(e, HttpStatus.NOT_FOUND, request.getRequestURL().toString());

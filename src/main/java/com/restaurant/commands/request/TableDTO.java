@@ -16,7 +16,7 @@ public class TableDTO {
     @Max(value = 10)
     @NotNull
     private int seatsNumber;
-    //@NotEmpty
+    @NotNull
     private Integer restaurantId;
 
     @JsonCreator
