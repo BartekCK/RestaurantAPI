@@ -42,6 +42,4 @@ public class RestaurantController {
     public List<OpinionView> getOpinionsByRestaurantId(@PathVariable Integer restaurantId) {
         return opinionService.getAllOpinionsByRestaurantId(restaurantId);
     }
-
-
 }

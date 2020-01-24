@@ -4,13 +4,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Value;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Value
 public class OpinionDTO {
 
-    @NotEmpty
+    @NotNull
     private String textOpinion;
 
     private LocalDateTime opinionDate;
