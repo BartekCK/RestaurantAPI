@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 public final class OrderMapper {
     public static OrderView mapOrderToOrderView(Order order) {
         return OrderView.builder()
+                .orderId(order.getOrderId())
                 .reservationId(order.getReservation().getReservationId())
                 .bill(order.getBill())
                 .orderedDishes(

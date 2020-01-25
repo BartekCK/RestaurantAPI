@@ -1,5 +1,6 @@
 package com.restaurant.utility.exceptions;
 
+import com.restaurant.utility.EmployeeCannotChangeStatusException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,5 +25,11 @@ public class GlobalExceptionHandler {
     @ResponseBody
     ResponseEntity<ExceptionMessage> handle404Error(HttpServletRequest request, Exception e) {
         return sendExceptionMessage(e, HttpStatus.NOT_FOUND, request.getRequestURL().toString());
+    }
+
+    @ExceptionHandler(EmployeeCannotChangeStatusException.class)
+    @ResponseBody
+    ResponseEntity<ExceptionMessage> handle400Error(HttpServletRequest request, Exception e) {
+        return sendExceptionMessage(e, HttpStatus.BAD_REQUEST, request.getRequestURL().toString());
     }
 }

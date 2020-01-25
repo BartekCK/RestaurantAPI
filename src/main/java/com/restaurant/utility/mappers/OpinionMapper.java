@@ -5,6 +5,8 @@ import com.restaurant.models.Opinion;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
+import java.util.Calendar;
+
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public final class OpinionMapper {
     public static OpinionView mapOpinionToOpinionView(Opinion opinion) {
@@ -13,7 +15,7 @@ public final class OpinionMapper {
                 .userName(opinion.getCustomer().getUsername())
                 .restaurant(RestaurantMapper.mapRestaurantToRestaurantView(opinion.getRestaurant()))
                 .textOpinion(opinion.getTextOpinion())
-                .opinionDate(opinion.getOpinionDate())
+                .opinionDate(Calendar.getInstance().getTime())
                 .build();
     }
 }

@@ -1,8 +1,10 @@
 package com.restaurant.models;
 
 import com.restaurant.models.enums.OrderStatusEnum;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Table;
 import javax.persistence.*;
@@ -12,6 +14,8 @@ import java.util.List;
 @Entity
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "orders")
 public class Order {
 
@@ -41,7 +45,7 @@ public class Order {
     @Column(name = "additional_remarks")
     private String additionalRemarks;
 
-    @Enumerated
+    @Enumerated(value = EnumType.STRING)
     private OrderStatusEnum status;
 
     @Column(name = "create_timestamp", nullable = false)
