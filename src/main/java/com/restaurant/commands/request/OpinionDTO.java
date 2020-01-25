@@ -13,11 +13,8 @@ public class OpinionDTO {
     @NotNull
     private String textOpinion;
 
-    private LocalDateTime opinionDate;
-
     @JsonCreator
     public OpinionDTO(@JsonProperty(value = "textOpinion", required = true) String textOpinion) {
         this.textOpinion = textOpinion;
-        opinionDate = LocalDateTime.now();
     }
 }

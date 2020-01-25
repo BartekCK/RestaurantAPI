@@ -16,6 +16,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -80,7 +81,7 @@ public class OpinionRepositoryImpl implements OpinionRepository {
                 .customer(user)
                 .restaurant(restaurant)
                 .textOpinion(opinionDTO.getTextOpinion())
-                .opinionDate(LocalDateTime.now())
+                .opinionDate(Calendar.getInstance().getTime())
                 .build();
     }
 
@@ -103,6 +104,7 @@ public class OpinionRepositoryImpl implements OpinionRepository {
 
     private Opinion getUpdatedOpinion(OpinionDTO opinionDTO, Opinion opinion) {
         opinion.setTextOpinion(opinionDTO.getTextOpinion());
+        opinion.setOpinionDate(Calendar.getInstance().getTime());
         return opinion;
     }
 

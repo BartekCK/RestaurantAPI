@@ -32,8 +32,4 @@ public class Reservation {
 
     private String comments;
 
-    public Reservation(LocalDateTime localDateTime) {
-        this.dateReservation = localDateTime;
-    }
-
 }
