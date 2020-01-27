@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
+@CrossOrigin
 @AllArgsConstructor
 @RequestMapping("api/opinions")
 public class OpinionController {
