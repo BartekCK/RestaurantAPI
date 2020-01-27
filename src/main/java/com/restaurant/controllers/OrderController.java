@@ -1,11 +1,9 @@
 package com.restaurant.controllers;
 
 import com.restaurant.commands.request.OrderDTO;
-import com.restaurant.commands.response.DishView;
 import com.restaurant.commands.response.OrderView;
 import com.restaurant.models.enums.OrderStatusEnum;
-import com.restaurant.repositories.OrderService;
-import com.restaurant.services.DishService;
+import com.restaurant.services.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
