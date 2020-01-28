@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
-@RequestMapping("index")
+@RequestMapping("api/index")
 @AllArgsConstructor
 public class LoginController {
 

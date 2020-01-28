@@ -6,6 +6,7 @@ import com.restaurant.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -54,15 +55,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/menu/**").permitAll()//temp
-                .antMatchers("/api/users/**").permitAll()//temp
-                .antMatchers("/api/restaurants/**").permitAll()//temp
                 .antMatchers("/api/index/**").permitAll()
-                .antMatchers("/api/tables/**").permitAll()//temp
-                .antMatchers("/api/opinions/**").permitAll()//temp
-                .antMatchers("/api/orders/**").permitAll()//temp
-                .antMatchers("/api/admin/**").permitAll()//temp
-                .antMatchers("/api/reservations/**").permitAll()//temp
+                .antMatchers(HttpMethod.GET,"/api/menu/**").permitAll()
+                .antMatchers("/api/users/signup").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/restaurants/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/tables/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/opinions/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)

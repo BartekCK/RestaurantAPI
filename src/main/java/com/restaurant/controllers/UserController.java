@@ -11,6 +11,7 @@ import com.restaurant.services.ReservationService;
 import com.restaurant.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -33,50 +34,50 @@ public class UserController {
     }
 
     @GetMapping("{userId}")
-    //@PreAuthorize("hasRole('ADMIN') or #userId == principal.id")
+    @PreAuthorize("hasRole('ADMIN') or #userId == principal.id")
     public UserPrincipal getUserById(@PathVariable Long userId) {
         return userService.getUserById(userId);
     }
 
 
     @PutMapping("{userId}")
-    //@PreAuthorize("#userId == principal.id")
+    @PreAuthorize("#userId == principal.id")
     public ResponseEntity<UserPrincipal> updateUser(@PathVariable Long userId, @RequestBody @Valid UserDTO userDTO) {
         return userService.updateUser(userId, userDTO);
     }
 
     @DeleteMapping("{userId}")
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity deleteUser(@PathVariable Long userId) {
         return userService.deleteUser(userId);
     }
 
     @PostMapping("{userId}/opinions/{restaurantId}")
-    //@PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('USER')")
     public Long addOpinion(@PathVariable Long userId, @PathVariable Integer restaurantId, @RequestBody OpinionDTO opinionDTO) {
         return opinionService.addOpinion(userId, restaurantId, opinionDTO);
     }
 
     @PutMapping("opinions/{opinionId}")//without UserID
-    //@PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('USER')")
     public OpinionView updateOpinion(@PathVariable Long opinionId, @RequestBody @Valid OpinionDTO opinionDTO) {
         return opinionService.updateOpinion(opinionId, opinionDTO);
     }
 
     @GetMapping("{userId}/opinions")
-    //@PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('USER')")
     public List<OpinionView> getAllOpinionsByUserId(@PathVariable Long userId) {
         return opinionService.getAllOpinionsByUserId(userId);
     }
 
     @PostMapping("{userId}/reservations")
-    //@PreAuthorize("hasAnyRole('ADMIN','COOK','WAITER') or #userId == principal.id")
+    @PreAuthorize("hasAnyRole('ADMIN','COOK','WAITER') or #userId == principal.id")
     public ResponseEntity<ReservationView> makeReservation(@RequestBody ReservationDTO reservationDTO, @PathVariable Long userId) {
         return reservationService.makeReservation(reservationDTO, userId);
     }
 
     @GetMapping("{userId}/reservations")
-    //@PreAuthorize("hasAnyRole('ADMIN','COOK','WAITER') or #userId == principal.id ")
+    @PreAuthorize("hasAnyRole('ADMIN','COOK','WAITER') or #userId == principal.id ")
     public Iterable<ReservationView> getAllUserReservations(@PathVariable Long userId) {
         return reservationService.getAllUserReservations(userId);
     }
